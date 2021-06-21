@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  node-front:
+    build: 
+      context: ./agendapp
+      dockerfile: build/development.Dockerfile
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - /Users/pedroporras/Documents/tutoriales/CursoNMK/agendapp:/home/node/app
+      - /home/node/app/node_modules
+
+  node-back:
+    build: 
+      context: ./agendapp-api
+      dockerfile: build/development.Dockerfile
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    ports:
+      - 9229:9229
+    volumes:
+      - /Users/pedroporras/Documents/tutoriales/CursoNMK/agendapp-api:/home/node/app
+      - /home/node/app/node_modules
