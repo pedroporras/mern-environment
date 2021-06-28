@@ -8,8 +8,9 @@ services:
     working_dir: /home/node/app
     environment:
       - NODE_ENV=development
+      - REACT_APP_BASE_URL=http://3.137.154.181:4000/
     volumes:
-      - /Users/pedroporras/Documents/tutoriales/CursoNMK/agendapp:/home/node/app
+      - ${PWD}/agendapp:/home/node/app
       - /home/node/app/node_modules
 
   node-back:
@@ -19,8 +20,11 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
+      - MONGO_CONN=mongodb+srv://agendapp_user:agenda2021@cluster0.eig00.mongodb.net/db_agendapp?authSource=admin&replicaSet=atlas-12hsa1-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true
+      - JWT_SECRET=GDFFkaouwpoHPOyq87oD724
+      - POSTGRES_CONN=postgres://vwhjglxv:wZpa1qXCuRA_tUdrobf7_1jbSCwhlaVa@batyr.db.elephantsql.com/vwhjglxv
     ports:
       - 9229:9229
     volumes:
-      - /Users/pedroporras/Documents/tutoriales/CursoNMK/agendapp-api:/home/node/app
+      - ${PWD}/agendapp-api:/home/node/app
       - /home/node/app/node_modules
